@@ -16,9 +16,9 @@
 
 ## Metrics Before Hardening / Security Controls
 
-The following table shows the metrics we measured in our insecure environment for 24 hours:
-Start Time   2024-10-01 08:48:43
-Stop Time    2024-10-02 08:48:43
+- <b>The following table shows the metrics we measured in our insecure environment for 24 hours:</b>
+- <b>Start Time   2024-10-01 08:48:43</b>
+- <b>Stop Time    2024-10-02 08:48:43</b>
 
 | Metric                   | Count
 | ------------------------ | -----
