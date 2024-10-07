@@ -14,7 +14,21 @@
 
 <h2>Configuration Steps</h2>
 
-- <b>At this point, we have left our insecure virtual machines running for at least 24 hours</b>
+## Metrics Before Hardening / Security Controls
+
+The following table shows the metrics we measured in our insecure environment for 24 hours:
+Start Time   2024-10-01 08:48:43
+Stop Time    2024-10-02 08:48:43
+
+| Metric                   | Count
+| ------------------------ | -----
+| SecurityEvent            | 14336
+| Syslog                   | 1610
+| SecurityAlert            | 0
+| SecurityIncident         | 162
+| AzureNetworkAnalytics_CL | 1386
+
+## Attack Maps Before Hardening / Security Controls
 
 ![windows-rdp-auth-fail](https://github.com/user-attachments/assets/e8294af7-fdea-40e1-ba22-9a141f5f0f01)
 - <b>Navigate to Microsoft Sentinel and click workbooks</b>
@@ -26,8 +40,40 @@
 
 ![nsg-malicious-allowed-in](https://github.com/user-attachments/assets/feafa721-e614-436c-bcdf-2b13560c2637)
 
-- SecurityEvent (Windows Event Logs)
-- Syslog (Linux Event Logs)
-- SecurityAlert (Log Analytics Alerts Triggered)
-- SecurityIncident (Incidents created by Sentinel)
-- AzureNetworkAnalytics_CL (Malicious Flows allowed into our honeynet)
+- <b>Navigate to Log Analytics Workspace and use these queries to determine the metrics of our insecure environment for the last 24 hours</b>
+- <b>SecurityEvent (Windows Event Logs)</b>
+```
+SecurityEvent
+| where TimeGenerated >= ago(24h)
+| count
+```
+
+- <b>Syslog (Linux Event Logs)</b>
+```
+Syslog
+| where TimeGenerated >= ago(24h)
+| count
+```
+
+- <b>SecurityAlery (Microsoft Defender for Cloud)</b>
+```
+SecurityAlert
+| where DisplayName !startswith "CUSTOM" and DisplayName !startswith "TEST"
+| where TimeGenerated >= ago(24h)
+| count
+```
+
+- <b>SecurityIncident (Incidents created by Sentinel)</b>
+```
+SecurityIncident
+| where TimeGenerated >= ago(24h)
+| count
+```
+
+- <b>AzureNetworkAnalytics_CL (Malicious Flows allowed into our honeynet)</b>
+```
+AzureNetworkAnalytics_CL 
+| where FlowType_s == "MaliciousFlow" and AllowedInFlows_d > 0
+| where TimeGenerated >= ago(24h)
+| count
+```
