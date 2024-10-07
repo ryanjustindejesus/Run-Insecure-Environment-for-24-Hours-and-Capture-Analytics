@@ -25,3 +25,9 @@
 
 
 ![nsg-malicious-allowed-in](https://github.com/user-attachments/assets/feafa721-e614-436c-bcdf-2b13560c2637)
+
+- SecurityEvent (Windows Event Logs)
+- Syslog (Linux Event Logs)
+- SecurityAlert (Log Analytics Alerts Triggered)
+- SecurityIncident (Incidents created by Sentinel)
+- AzureNetworkAnalytics_CL (Malicious Flows allowed into our honeynet)
