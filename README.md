@@ -1,6 +1,6 @@
 <h1>Run Insecure Environment for 24 Hours and Capture Analytics</h1>
 
-- <b>This tutorial outlines the configuration </b>
+- <b>This tutorial outlines the configuration of capturing our insecure environment map analytics after leaving it running for 24 hours</b>
 
 <h2>Environments and Technologies Used</h2>
 
