@@ -1,4 +1,4 @@
-<h1>Run Insecure Environment and Capture Analytics</h1>
+<h1>Run Insecure Environment for 24 Hours and Capture Analytics</h1>
 
 - <b>This tutorial outlines the configuration </b>
 
